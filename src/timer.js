@@ -63,5 +63,24 @@ export class Timer {
   }
 
 
+  #setTimer = (func, time) => {
+    if (this.#validateTimer(func, time)) {
+      this.#timer = setInterval(func, time)
+    } else {
+      throw new Error('Timer validation failed.')
+    }
+  }
+
+  #getTimer = () => {
+    return this.#timer
+  }
+
+  #validateTimer = (func, time) => {
+    if (func instanceof Function && (typeof time === 'number' && time === 10)) {
+      return true
+    } else {
+      return false
+    }
+  }
 
 }
