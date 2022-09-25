@@ -93,12 +93,12 @@ export class Timer {
 
 
   #countMs = () => {
-    this.#setMs(this.#getMs() + 1)
+    this.#setMs(this.#getMs() + 10)
     this.#updateTime()
   }
 
   #updateTime = () => {
-    if (this.#getMs() === 100) {
+    if (this.#getMs() === 1000) {
       this.#setSeconds(this.#getSeconds() + 1)
       console.log(this.#getSeconds())
       this.#setMs(0)
