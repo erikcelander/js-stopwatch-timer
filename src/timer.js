@@ -83,4 +83,12 @@ export class Timer {
     }
   }
 
+  start = () => {
+    try {
+      this.#setTimer(this.#add, 10)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
 }
