@@ -126,4 +126,15 @@ export class Timer {
     clearInterval(this.#getTimer())
   }
 
+
+  reset = () => {
+    this.stop()
+    this.#setMs(0)
+    this.#setSeconds(0)
+    this.#setMinutes(0)
+    this.#setHours(0)
+    this.#setDays(0)
+  }
+
+
 }
