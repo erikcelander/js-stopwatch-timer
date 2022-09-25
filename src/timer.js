@@ -24,4 +24,15 @@ export class Timer {
   #getMs = () => {
     return this.#ms
   }
+  
+
+  #setSeconds = (value) => {
+    this.#seconds = value
+  }
+
+  #getSeconds = () => {
+    return this.#seconds
+  }
+
+
 }
