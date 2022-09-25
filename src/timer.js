@@ -85,17 +85,19 @@ export class Timer {
 
   start = () => {
     try {
-      this.#setTimer(this.#add, 10)
+      this.#setTimer(this.#countMs, 10)
     } catch (error) {
       console.log(error.message)
     }
   }
 
 
-  #add = () => {
-    
+  #countMs = () => {
     this.#setMs(this.#getMs() + 1)
+    this.#updateTime()
+  }
 
+  #updateTime = () => {
     if (this.#getMs() === 100) {
       this.#setSeconds(this.#getSeconds() + 1)
       console.log(this.#getSeconds())
