@@ -121,4 +121,9 @@ export class Timer {
   }
 
 
+
+  stop = () => {
+    clearInterval(this.#getTimer())
+  }
+
 }
