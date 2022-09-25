@@ -24,7 +24,7 @@ export class Timer {
   #getMs = () => {
     return this.#ms
   }
-  
+
 
   #setSeconds = (value) => {
     this.#seconds = value
@@ -33,6 +33,35 @@ export class Timer {
   #getSeconds = () => {
     return this.#seconds
   }
+
+
+
+  #setMinutes = (value) => {
+    this.#minutes = value
+  }
+
+  #getMinutes = () => {
+    return this.#minutes
+  }
+
+
+  #setHours = (value) => {
+    this.#hours = value
+  }
+
+  #getHours = () => {
+    return this.#hours
+  }
+
+
+  #setDays = (value) => {
+    this.#days = value
+  }
+
+  #getDays = () => {
+    return this.#days
+  }
+
 
 
 }
