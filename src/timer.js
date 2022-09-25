@@ -91,4 +91,32 @@ export class Timer {
     }
   }
 
+
+  #add = () => {
+    
+    this.#setMs(this.#getMs() + 1)
+
+    if (this.#getMs() === 100) {
+      this.#setSeconds(this.#getSeconds() + 1)
+      console.log(this.#getSeconds())
+      this.#setMs(0)
+    }
+  
+    if (this.#getSeconds() === 60) {
+      this.#setMinutes(this.#getMinutes() + 1)
+      this.#setSeconds(0)
+    }
+  
+    if (this.#getMinutes() === 60) {
+      this.#setHours(this.#getHours() + 1)
+      this.#setMinutes(0)
+    }
+  
+    if (this.#getHours() === 24) {
+      this.#setDays(this.#getDays() + 1)
+      this.#setHours(0)
+    }
+  }
+
+
 }
