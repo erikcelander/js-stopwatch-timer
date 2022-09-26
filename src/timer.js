@@ -8,23 +8,12 @@ export class Timer {
   #timer
 
   constructor () {
-    this.#ms = 0
     this.#seconds = 0
     this.#minutes = 0
     this.#hours = 0
     this.#days = 0
     this.#timer
   }
-
-
-  #setMs = (value) => {
-    this.#ms = value
-  }
-
-  #getMs = () => {
-    return this.#ms
-  }
-
 
   #setSeconds = (value) => {
     this.#seconds = value
@@ -76,7 +65,7 @@ export class Timer {
   }
 
   #validateTimer = (func, time) => {
-    if (func instanceof Function && (typeof time === 'number' && time === 10)) {
+    if (func instanceof Function && (typeof time === 'number' && time > 0)) {
       return true
     } else {
       return false
@@ -85,25 +74,19 @@ export class Timer {
 
   start = () => {
     try {
-      this.#setTimer(this.#countMs, 10)
+      this.#setTimer(this.#count, 1000)
     } catch (error) {
       console.log(error.message)
     }
   }
 
 
-  #countMs = () => {
-    this.#setMs(this.#getMs() + 10)
+  #count = () => {
+    this.#setSeconds(this.#getSeconds() + 1)
     this.#updateTime()
   }
 
   #updateTime = () => {
-    if (this.#getMs() === 1000) {
-      this.#setSeconds(this.#getSeconds() + 1)
-      console.log(this.#getSeconds())
-      this.#setMs(0)
-    }
-  
     if (this.#getSeconds() === 60) {
       this.#setMinutes(this.#getMinutes() + 1)
       this.#setSeconds(0)
@@ -120,8 +103,6 @@ export class Timer {
     }
   }
 
-
-
   stop = () => {
     clearInterval(this.#getTimer())
   }
@@ -129,12 +110,46 @@ export class Timer {
 
   reset = () => {
     this.stop()
-    this.#setMs(0)
     this.#setSeconds(0)
     this.#setMinutes(0)
     this.#setHours(0)
     this.#setDays(0)
   }
 
+  log = () => {
+    let text = ''
+
+    if (this.#getMinutes() === 0) {
+      text = `${this.#getSeconds()}s`
+    } 
+
+    if (this.#getMinutes() > 0) {
+      text = `${this.#getMinutes()}m ${this.#getSeconds()}s`
+    }
+
+    if (this.#getHours() > 0) {
+      text = `${this.#getHours()}hr ${this.#getMinutes()}m ${this.#getSeconds()}s`
+    }
+
+    if (this.#getDays() > 0) {
+      text = `${this.#getDays()}days ${this.#getHours()}hrs ${this.#getMinutes()}m ${this.#getSeconds()}s`
+    }
+
+    console.log(text)
+  }
+
+  lap = () => {
+    const lap = {
+      seconds: this.#getSeconds(),
+      minutes: this.#getMinutes(),
+      hours: this.#getHours(),
+      days: this.#getDays()
+    }
+    return lap
+  }
+
 
 }
+
+const timer = new Timer()
+timer.start()
