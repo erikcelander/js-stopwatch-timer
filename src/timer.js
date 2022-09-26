@@ -1,5 +1,3 @@
-// Author: Erik Kroon Celander, ek223ur@student.lnu.se
-
 /**
  * Class representing a timer.
  */
