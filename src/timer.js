@@ -20,6 +20,7 @@ export class Timer {
   }
 
   // Getters and setters
+
   #setSeconds = (value) => {
     this.#seconds = value
   }
@@ -69,6 +70,7 @@ export class Timer {
 
 
   // Validation 
+
   #validateTimer = (func, time) => {
     if (func instanceof Function && this.#isPositiveInteger(time)) {
       return true
@@ -86,7 +88,7 @@ export class Timer {
   }
 
 
-  // Public methods
+  // Class methods
 
   /**
    * Starts the timer counting up in 1000ms (1s) intervals.
@@ -99,78 +101,6 @@ export class Timer {
     }
   }
 
-  /**
-   * Resets the time and stops the timer.
-   */
-  reset = () => {
-    this.#stopTimer()
-    this.#setSeconds(0)
-    this.#setMinutes(0)
-    this.#setHours(0)
-    this.#setDays(0)
-  }
-
-
-  /**
-   * Begins a countdown for the duration of the user input.
-   * 
-   * @param {Number} seconds - the amount of seconds to countdown from.
-   */
-   countdown = (seconds) => {
-    this.reset()
-
-    if (this.#isPositiveInteger(seconds)) {
-
-      this.#setSeconds(seconds)
-      this.#setTimer(this.#remove, 1000)
-
-    } else {
-      throw new Error('Seconds to countdown needs to be a positive integer.')
-    }
-  }
-
-
-  /**
-   * Returns an object containing the current time when called upon as values.
-   * 
-   * @returns lap - object containing the times.
-   */
-   lap = () => {
-    const lap = {
-      seconds: this.#getSeconds(),
-      minutes: this.#getMinutes(),
-      hours: this.#getHours(),
-      days: this.#getDays()
-    }
-    return lap
-  }
-
-  /**
-   * Prints how much time has passed.
-   */
-   log = () => {
-    let text = ''
-
-    if (this.#getMinutes() === 0) {
-      text = `${this.#getSeconds()}s`
-    } 
-
-    if (this.#getMinutes() > 0) {
-      text = `${this.#getMinutes()}m ${this.#getSeconds()}s`
-    }
-
-    if (this.#getHours() > 0) {
-      text = `${this.#getHours()}hr ${this.#getMinutes()}m ${this.#getSeconds()}s`
-    }
-
-    if (this.#getDays() > 0) {
-      text = `${this.#getDays()}days ${this.#getHours()}hrs ${this.#getMinutes()}m ${this.#getSeconds()}s`
-    }
-
-    console.log(text)
-  }
-
-  // Private methods
   #add = () => {
     this.#setSeconds(this.#getSeconds() + 1)
     this.#updateTime()
@@ -193,8 +123,37 @@ export class Timer {
     }
   }
 
-  #stopTimer = () => {
+  /**
+   * Resets the time and stops the timer.
+   */
+  reset = () => {
+    this.#stop()
+    this.#setSeconds(0)
+    this.#setMinutes(0)
+    this.#setHours(0)
+    this.#setDays(0)
+  }
+
+  #stop = () => {
     clearInterval(this.#getTimer())
+  }
+
+  /**
+   * Begins a countdown for the duration of the user input.
+   * 
+   * @param {Number} seconds - the amount of seconds to countdown from.
+   */
+  countdown = (seconds) => {
+    this.reset()
+
+    if (this.#isPositiveInteger(seconds)) {
+
+      this.#setSeconds(seconds)
+      this.#setTimer(this.#remove, 1000)
+
+    } else {
+      throw new Error('Seconds to countdown needs to be a positive integer.')
+    }
   }
 
   #remove = () => {
@@ -203,5 +162,45 @@ export class Timer {
     if (this.#getSeconds() === 0) {
       this.reset()
     }
+  }
+
+  /**
+   * Returns an object containing the current time when called upon as values.
+   * 
+   * @returns lap - object containing the times.
+   */
+  lap = () => {
+    const lap = {
+      seconds: this.#getSeconds(),
+      minutes: this.#getMinutes(),
+      hours: this.#getHours(),
+      days: this.#getDays()
+    }
+    return lap
+  }
+
+  /**
+   * Prints how much time has passed.
+   */
+  log = () => {
+    let text = ''
+
+    if (this.#getMinutes() === 0) {
+      text = `${this.#getSeconds()}s`
+    } 
+
+    if (this.#getMinutes() > 0) {
+      text = `${this.#getMinutes()}m ${this.#getSeconds()}s`
+    }
+
+    if (this.#getHours() > 0) {
+      text = `${this.#getHours()}hr ${this.#getMinutes()}m ${this.#getSeconds()}s`
+    }
+
+    if (this.#getDays() > 0) {
+      text = `${this.#getDays()}days ${this.#getHours()}hrs ${this.#getMinutes()}m ${this.#getSeconds()}s`
+    }
+
+    console.log(text)
   }
 }
