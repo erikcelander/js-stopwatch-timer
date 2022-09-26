@@ -91,7 +91,7 @@ export default class Timer {
   // Class methods
 
   /**
-   * Starts the timer counting up in 1000ms (1s) intervals.
+   * Starts the timer counting upwards in 1000ms (1s) intervals.
    */
   start = () => {
     try {
