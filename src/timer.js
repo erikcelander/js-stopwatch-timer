@@ -1,6 +1,10 @@
+// Author: Erik Kroon Celander, ek223ur@student.lnu.se
+
+/**
+ * Class representing a timer.
+ */
 export class Timer {
 
-  #ms
   #seconds
   #minutes
   #hours
@@ -15,6 +19,7 @@ export class Timer {
     this.#timer
   }
 
+  // Getters and setters
   #setSeconds = (value) => {
     this.#seconds = value
   }
@@ -22,8 +27,6 @@ export class Timer {
   #getSeconds = () => {
     return this.#seconds
   }
-
-
 
   #setMinutes = (value) => {
     this.#minutes = value
@@ -64,14 +67,8 @@ export class Timer {
     return this.#timer
   }
 
-  #isPositiveInteger = (int) => {
-    if (typeof int === 'number' && int > 0) {
-      return true
-    } else {
-      return false
-    }
-  }
 
+  // Validation 
   #validateTimer = (func, time) => {
     if (func instanceof Function && this.#isPositiveInteger(time)) {
       return true
@@ -80,51 +77,78 @@ export class Timer {
     }
   }
 
+  #isPositiveInteger = (int) => {
+    if (typeof int === 'number' && int > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
+  // Public methods
+
+  /**
+   * Starts the timer counting up in 1000ms (1s) intervals.
+   */
   start = () => {
     try {
-      this.#setTimer(this.#count, 1000)
+      this.#setTimer(this.#add, 1000)
     } catch (error) {
       console.log(error.message)
     }
   }
 
-
-  #count = () => {
-    this.#setSeconds(this.#getSeconds() + 1)
-    this.#updateTime()
-  }
-
-  #updateTime = () => {
-    if (this.#getSeconds() === 60) {
-      this.#setMinutes(this.#getMinutes() + 1)
-      this.#setSeconds(0)
-    }
-  
-    if (this.#getMinutes() === 60) {
-      this.#setHours(this.#getHours() + 1)
-      this.#setMinutes(0)
-    }
-  
-    if (this.#getHours() === 24) {
-      this.#setDays(this.#getDays() + 1)
-      this.#setHours(0)
-    }
-  }
-
-  stop = () => {
-    clearInterval(this.#getTimer())
-  }
-
-
+  /**
+   * Resets the time and stops the timer.
+   */
   reset = () => {
-    this.stop()
+    this.#stopTimer()
     this.#setSeconds(0)
     this.#setMinutes(0)
     this.#setHours(0)
     this.#setDays(0)
   }
 
-  log = () => {
+
+  /**
+   * Begins a countdown for the duration of the user input.
+   * 
+   * @param {Number} seconds - the amount of seconds to countdown from.
+   */
+   countdown = (seconds) => {
+    this.reset()
+
+    if (this.#isPositiveInteger(seconds)) {
+
+      this.#setSeconds(seconds)
+      this.#setTimer(this.#remove, 1000)
+
+    } else {
+      throw new Error('Seconds to countdown needs to be a positive integer.')
+    }
+  }
+
+
+  /**
+   * Returns an object containing the current time when called upon as values.
+   * 
+   * @returns lap - object containing the times.
+   */
+   lap = () => {
+    const lap = {
+      seconds: this.#getSeconds(),
+      minutes: this.#getMinutes(),
+      hours: this.#getHours(),
+      days: this.#getDays()
+    }
+    return lap
+  }
+
+  /**
+   * Prints how much time has passed.
+   */
+   log = () => {
     let text = ''
 
     if (this.#getMinutes() === 0) {
@@ -146,16 +170,32 @@ export class Timer {
     console.log(text)
   }
 
-  lap = () => {
-    const lap = {
-      seconds: this.#getSeconds(),
-      minutes: this.#getMinutes(),
-      hours: this.#getHours(),
-      days: this.#getDays()
-    }
-    return lap
+  // Private methods
+  #add = () => {
+    this.#setSeconds(this.#getSeconds() + 1)
+    this.#updateTime()
   }
 
+  #updateTime = () => {
+    if (this.#getSeconds() === 60) {
+      this.#setMinutes(this.#getMinutes() + 1)
+      this.#setSeconds(0)
+    }
+  
+    if (this.#getMinutes() === 60) {
+      this.#setHours(this.#getHours() + 1)
+      this.#setMinutes(0)
+    }
+  
+    if (this.#getHours() === 24) {
+      this.#setDays(this.#getDays() + 1)
+      this.#setHours(0)
+    }
+  }
+
+  #stopTimer = () => {
+    clearInterval(this.#getTimer())
+  }
 
   #remove = () => {
     this.#setSeconds(this.#getSeconds() - 1)
@@ -164,20 +204,4 @@ export class Timer {
       this.reset()
     }
   }
-
-  countdown = (seconds) => {
-    this.reset()
-
-    if (this.#isPositiveInteger(seconds)) {
-      
-      this.#setSeconds(seconds)
-      this.#setTimer(this.#remove, 1000)
-
-    } else {
-      throw new Error('Seconds to countdown needs to be a positive integer.')
-    }
-  }
 }
-
-const timer = new Timer()
-timer.start()
