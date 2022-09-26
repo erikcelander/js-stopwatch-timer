@@ -165,7 +165,7 @@ export default class Timer {
   }
 
   /**
-   * Returns an object containing the current time when called upon as values.
+   * Returns an object containing the current time when called upon as values with time unit as keys.
    * 
    * @returns lap - object containing the times.
    */
