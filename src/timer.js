@@ -95,13 +95,13 @@ export default class Timer {
    */
   start = () => {
     try {
-      this.#setTimer(this.#add, 1000)
+      this.#setTimer(this.#addSecondToTimer, 1000)
     } catch (error) {
       console.log(error.message)
     }
   }
 
-  #add = () => {
+  #addSecondToTimer = () => {
     this.#setSeconds(this.#getSeconds() + 1)
     this.#updateTime()
   }
@@ -149,14 +149,14 @@ export default class Timer {
     if (this.#isPositiveInteger(seconds)) {
 
       this.#setSeconds(seconds)
-      this.#setTimer(this.#remove, 1000)
+      this.#setTimer(this.#removeSecondFromTimer, 1000)
 
     } else {
       throw new Error('Seconds to countdown needs to be a positive integer.')
     }
   }
 
-  #remove = () => {
+  #removeSecondFromTimer = () => {
     this.#setSeconds(this.#getSeconds() - 1)
 
     if (this.#getSeconds() === 0) {
