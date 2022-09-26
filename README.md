@@ -1,6 +1,6 @@
 # js-stopwatch-timer
 
-A simple stopwatch/timer module built on pure vanilla JavaScript without any external dependencies.
+A simple stopwatch/timer module created with pure vanilla JavaScript without any external dependencies.
 
 ----
 
