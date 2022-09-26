@@ -64,8 +64,16 @@ export class Timer {
     return this.#timer
   }
 
+  #isPositiveInteger = (int) => {
+    if (typeof int === 'number' && int > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   #validateTimer = (func, time) => {
-    if (func instanceof Function && (typeof time === 'number' && time > 0)) {
+    if (func instanceof Function && this.#isPositiveInteger(time)) {
       return true
     } else {
       return false
@@ -149,6 +157,26 @@ export class Timer {
   }
 
 
+  #remove = () => {
+    this.#setSeconds(this.#getSeconds() - 1)
+
+    if (this.#getSeconds() === 0) {
+      this.reset()
+    }
+  }
+
+  countdown = (seconds) => {
+    this.reset()
+
+    if (this.#isPositiveInteger(seconds)) {
+      
+      this.#setSeconds(seconds)
+      this.#setTimer(this.#remove, 1000)
+
+    } else {
+      throw new Error('Seconds to countdown needs to be a positive integer.')
+    }
+  }
 }
 
 const timer = new Timer()
