@@ -3,7 +3,7 @@
 /**
  * Class representing a timer.
  */
-export class Timer {
+export default class Timer {
 
   #seconds
   #minutes
@@ -127,14 +127,14 @@ export class Timer {
    * Resets the time and stops the timer.
    */
   reset = () => {
-    this.#stop()
+    this.stop()
     this.#setSeconds(0)
     this.#setMinutes(0)
     this.#setHours(0)
     this.#setDays(0)
   }
 
-  #stop = () => {
+  stop = () => {
     clearInterval(this.#getTimer())
   }
 
