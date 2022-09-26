@@ -30,6 +30,7 @@ setTimeout(() => {
 
     setTimeout(() => {
       clearInterval(interval)
+      timer.stop()
     }, 10020)
 
   }, 5010)
