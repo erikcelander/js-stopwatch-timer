@@ -61,8 +61,15 @@ timer.log()
 ````
 Logs current time.
 
+---
 
 
+## Versions
+
+---
+### 1.0.0
+
+* 1.0.0 was released 2022-09-26
 
 
 
