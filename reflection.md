@@ -6,7 +6,7 @@ I mina tidigare kurser eller projekt så har jag haft i åtanke att det är en l
 
 I mina tidigare kurser så har jag fått instruktionen om att all kod ska dokumenteras tydligt på ett sätt som boken i denna kurs menar är/kan vara onödigt/redundant, bloated eller ’noise’. Givetvis håller jag med boken om att många kommentarer i många fall inte behöver existera och blir bara mer innehåll för ögat att läsa utan att faktiskt tillföra något, varpå jag valde att endast smått kommentera de publika metoderna.
 
-Jag har tidigare haft en förkärlek för one-liners, speciellt the ternary operator ? : som jag då tyckte var väldigt ”snygg” kod men på vår första workshop under parprogrammeringen så skrev personen jag programmerade med en sådan som tog mig mer tid att förstå än vad han sparade in genom att inte skriva ut hela uttrycket så tydligt som möjligt. I detta ögonblick så insåg jag verkligen vikten (och även innebörden) av kodkvalitet. 
+Jag har tidigare haft en förkärlek för one-liners, speciellt the ternary operator ? : som jag då tyckte var väldigt ”snygg” kod men på vår första workshop under parprogrammeringen så skrev personen jag programmerade med en sådan som tog mig mer tid att förstå än vad han sparade in genom att inte skriva ut hela uttrycket så tydligt som möjligt. I detta ögonblick så kändes det som att jag verkligen insåg vikten (och även innebörden) av kodkvalitet. 
 
 
 ----
