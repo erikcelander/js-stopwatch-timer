@@ -31,12 +31,12 @@ I [README.md](https://github.com/erikcelander/js-stopwatch-timer/blob/main/READM
 
 ## Hur jag testat
 
-Finns beskrivet i [test-report.md](https://github.com/erikcelander/js-stopwatch-timer/blob/main/test-report.md.
+Finns beskrivet i [test-report.md](https://github.com/erikcelander/js-stopwatch-timer/blob/main/test-report.md).
 
 
 ### Testfall
 
-Finns i [test-report.md](https://github.com/erikcelander/js-stopwatch-timer/blob/main/test-report.md.
+Finns i [test-report.md](https://github.com/erikcelander/js-stopwatch-timer/blob/main/test-report.md).
 
 
 ## Kodkvalitetskrav
