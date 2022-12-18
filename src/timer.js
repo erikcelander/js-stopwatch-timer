@@ -150,7 +150,7 @@ export default class Timer {
       this.#setTimer(this.#removeSecondFromTimer, 1000)
 
     } else {
-      throw new Error('Seconds to countdown needs to be a positive integer.')
+      throw new RangeError('Seconds to countdown needs to be a positive integer.')
     }
   }
 
